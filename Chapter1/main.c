@@ -1,13 +1,51 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAXLINE 1000
-#define TABSTOP 5
-
 int main()
 {
-    exer1_21();
+    printf("Hello world!\n");
     return 0;
+}
+#define TABSTOP 5        /* fixed tabstop set to 4 */
+
+void detab(void) {
+    extern char line[MAXLINE];
+
+    int c, j, i;
+    j = i = 0;
+
+    for(i=0; (c = getchar()) != EOF; ++i)
+        if(c == '\t') {
+            line[i++] = ' ';
+
+            while(i % TABSTOP != 0)
+                line[i++] = ' ';
+            --i;
+        }
+
+        else
+            line[i] = c;
+
+}
+
+void exer1_20() {
+
+    /*
+        Write a program detab that replaces tabs in the input with the proper number
+        of blanks to space to the next tab stop. Assume a fixed set of tab stops, say every n columns.
+        Should n be a variable or a symbolic parameter?
+
+        Meaning whenever program sees \t, it needs to determine how many spaces should put
+        For instance if tab stop is 5, if \t is on 0 it should go to the value which is divisible by 5
+        which is 5, if cursor is on 7 it should move to 10 since 10 is the next number divisible by 5
+    */
+
+
+    printf("Exercise 1_20...\n");
+
+    extern char line[MAXLINE];
+    detab();
+    printf("\nConverted: '%s'", line);
 }
 
 void exer1_21() {
@@ -24,8 +62,6 @@ void exer1_21() {
     detab_local(input_len);
 
 }
-
-char line[MAXLINE];
 
 int getinput() {
     extern char line[MAXLINE];
@@ -71,4 +107,3 @@ void detab_local(int len) {
     // line_n[i] = '\0';
     printf("\n'%s'", line_n);
 }
-
