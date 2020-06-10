@@ -1,12 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define TABSTOP 5        /* fixed tabstop set to 4 */
+#define MAXLINE 1000     /* Size of the input */
+
 int main()
 {
-    printf("Hello world!\n");
+    exer1_21();
     return 0;
 }
-#define TABSTOP 5        /* fixed tabstop set to 4 */
+
+char line[MAXLINE];
 
 void detab(void) {
     extern char line[MAXLINE];
