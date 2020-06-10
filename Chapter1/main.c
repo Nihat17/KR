@@ -109,17 +109,9 @@ void detab_local(int len) {
             line_n[k++] = '\\t';
             flag = 1;
         }
-        else if(flag == 0) {
-            /*if(line[k] == '\\') {
-                line_n[k++] = line[i];
-                line_n[k] = '\0';
-            }
-            else
-                line_n[k++] = line[i];
-                */
+        else if(flag == 0)
             line_n[k++] = line[i];
 
-        }
     }
     line_n[k] = '\0';
     printf("\n'%s'", line_n);
