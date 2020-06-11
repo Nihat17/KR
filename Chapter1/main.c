@@ -3,10 +3,11 @@
 
 #define TABSTOP 5        /* fixed tabstop set to 4 */
 #define MAXLINE 1000     /* Size of the input */
+#define MAXWIDTH 5        /* WIDTH that each line should have */
 
 int main()
 {
-    exer1_21();
+    exer1_22();
     return 0;
 }
 
@@ -115,4 +116,44 @@ void detab_local(int len) {
     }
     line_n[k] = '\0';
     printf("\n'%s'", line_n);
+}
+
+void exer1_22() {
+    printf("Exercise 1.22...\n");
+
+    int input_len = getinput();
+
+    char output[MAXLINE];
+    extern char line[MAXLINE];          /* input array */
+
+    int c, i, ptr_i = -1, ptr_k = -1, k = 0, flag = -1;
+
+    for(i = 0; i < input_len; ++i) {
+        if(k % MAXWIDTH != 0 || k == 0) {
+            if(line[i]  != '\t' && line[i] != ' '){
+                if(line[i + 1] == ' ' || line[i + 1] == '\t') {
+                    ptr_i = i + 1;
+                    ptr_k = k + 1;
+                }
+                output[k++] = line[i];
+            }
+            else if(line[i] == '\t') {
+                while(k < MAXWIDTH && k % TABSTOP != 0)
+                    output[k++] = ' ';
+
+                if(k >= MAXWIDTH) {
+                    k = ptr_k;
+                    output[k] = '\n';
+                    while(k % TABSTOP != 0)
+                        output[k++] = ' ';
+                }
+            }
+        }
+        else {
+            k = ptr_k;
+            output[k++] = '\n';
+            i = ptr_i;
+        }
+    }
+    printf("\n%s", output);
 }
