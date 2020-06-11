@@ -3,7 +3,7 @@
 
 #define TABSTOP 5        /* fixed tabstop set to 4 */
 #define MAXLINE 1000     /* Size of the input */
-#define MAXWIDTH 19        /* WIDTH that each line should have */
+#define MAXWIDTH 7        /* WIDTH that each line should have */
 
 int main()
 {
@@ -146,11 +146,14 @@ void exer1_22() {
                 ++output_counter;
             }
             else if(line[i] == '\t') {
-                while(k < MAXWIDTH && k % TABSTOP != 0)
+                ptr_k = k;
+                while(output_counter < MAXWIDTH && k % TABSTOP != 0) {
                     output[k++] = ' ';
+                    ++output_counter;
+                }
 
-                if(k >= MAXWIDTH) {
-                    k = ptr_k;
+                if(output_counter >= MAXWIDTH) {
+                    k = ++ptr_k;
                     output[k] = '\n';
                     while(k % TABSTOP != 0)
                         output[k++] = ' ';
@@ -161,10 +164,10 @@ void exer1_22() {
             k = ++ptr_k;
             output_counter = 0;
             output[k++] = '\n';
-            i = ptr_i;
+            i =  ++ptr_i;
 
             flag = -1;
-            output[k++] = line[++i];
+            output[k++] = line[i];
         }
     }
     output[k] = '\0';
