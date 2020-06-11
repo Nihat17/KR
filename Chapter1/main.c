@@ -3,7 +3,7 @@
 
 #define TABSTOP 5        /* fixed tabstop set to 4 */
 #define MAXLINE 1000     /* Size of the input */
-#define MAXWIDTH 5        /* WIDTH that each line should have */
+#define MAXWIDTH 20        /* WIDTH that each line should have */
 
 int main()
 {
@@ -127,15 +127,22 @@ void exer1_22() {
     extern char line[MAXLINE];          /* input array */
 
     int c, i, ptr_i = -1, ptr_k = -1, k = 0, flag = -1;
+    int output_counter = 0;
 
     for(i = 0; i < input_len; ++i) {
-        if(k % MAXWIDTH != 0 || k == 0) {
-            if(line[i]  != '\t' && line[i] != ' '){
-                if(line[i + 1] == ' ' || line[i + 1] == '\t') {
-                    ptr_i = i + 1;
-                    ptr_k = k + 1;
+        if(output_counter % MAXWIDTH != 0 || output_counter == 0) {
+            if(line[i] != '\t'){
+                if(line[i] == ' ') {
+                    ptr_i = i;
+                    ptr_k = k;
+                    flag = 1;
+                }
+                else if(flag == -1 || line[i + 1] == ' ') {
+                    ptr_i = i;
+                    ptr_k = k;
                 }
                 output[k++] = line[i];
+                ++output_counter;
             }
             else if(line[i] == '\t') {
                 while(k < MAXWIDTH && k % TABSTOP != 0)
@@ -150,10 +157,18 @@ void exer1_22() {
             }
         }
         else {
-            k = ptr_k;
+            k = ++ptr_k;
+            output_counter = k;
             output[k++] = '\n';
             i = ptr_i;
+            flag = -1;
+
+            output[k++] = line[++i];
+            ++output_counter;
+
         }
     }
+    output[k] = '\0';
+
     printf("\n%s", output);
 }
