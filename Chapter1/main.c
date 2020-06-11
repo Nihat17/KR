@@ -127,10 +127,11 @@ void exer1_22() {
     extern char line[MAXLINE];          /* input array */
 
     int c, i, ptr_i = -1, ptr_k = -1, k = 0, flag = -1;
-    int output_counter = 0;
+    int output_counter = 0, flag2 = -1;
 
     for(i = 0; i < input_len; ++i) {
-        if(output_counter % MAXWIDTH != 0 || output_counter == 0) {
+        if(k % MAXWIDTH != 0 || output_counter == 0) {
+            flag2 = 0;
             if(line[i] != '\t'){
                 if(line[i] == ' ') {
                     ptr_i = i;
@@ -165,7 +166,7 @@ void exer1_22() {
 
             output[k++] = line[++i];
             ++output_counter;
-
+            //flag2 = 1;
         }
     }
     output[k] = '\0';
