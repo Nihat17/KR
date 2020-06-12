@@ -192,7 +192,7 @@ void exer1_23() {
     printf("Exercise 1.23...\n");
 
     int state = OUT;
-    int c, com_type = 0; flag = 0, k = 0;
+    int c, com_type = 0, flag = 0, k = 0;
 
     char output[MAXLINE];
 
@@ -223,5 +223,6 @@ void exer1_23() {
             }
         }
     }
+    output[k] = '\0';
     printf("\nConverted:\n%s", output);
 }
