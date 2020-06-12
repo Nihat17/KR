@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define TABSTOP 5        /* fixed tabstop set to 4 */
+#define TABSTOP 8        /* fixed tabstop set to 4 */
 #define MAXLINE 1000     /* Size of the input */
-#define MAXWIDTH 7        /* WIDTH that each line should have */
+#define MAXWIDTH 20        /* WIDTH that each line should have */
 
 int main()
 {
@@ -164,10 +164,8 @@ void exer1_22() {
             k = ++ptr_k;
             output_counter = 0;
             output[k++] = '\n';
-            i =  ++ptr_i;
-
+            i = ptr_i;
             flag = -1;
-            output[k++] = line[i];
         }
     }
     output[k] = '\0';
