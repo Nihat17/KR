@@ -3,11 +3,14 @@
 
 #define TABSTOP 8        /* fixed tabstop set to 4 */
 #define MAXLINE 1000     /* Size of the input */
-#define MAXWIDTH 5        /* WIDTH that each line should have */
+#define MAXWIDTH 5       /* WIDTH that each line should have */
+
+#define IN 1             /* state for being inside comment */
+#define OUT 0
 
 int main()
 {
-    exer1_22();
+    exer1_23();
     return 0;
 }
 
@@ -177,4 +180,48 @@ void exer1_22() {
     output[k] = '\0';
 
     printf("\n%s", output);
+}
+
+void exer1_23() {
+
+    /*
+        Write a program to remove all comments from a C program. Don't forget to
+        handle quoted strings and character constants properly. C comments don't nest.
+    */
+
+    printf("Exercise 1.23...\n");
+
+    int state = OUT;
+    int c, com_type = 0; flag = 0, k = 0;
+
+    char output[MAXLINE];
+
+    while((c = getchar()) != EOF && k < MAXLINE) {
+        if(state == OUT) {
+            output[k++] = c;
+
+            if(flag == 1 && c == '/' || flag == 1 && c == '*') {
+                state = IN;
+                com_type = (c == '/') ? 0 : 1;
+                flag = 0;
+                k -= 2; // might be 3
+            }
+            else if(c == '/')
+                flag = 1;
+
+        }
+        else {
+            if(com_type == 0 && c == '\n')
+                state = OUT;
+            else if(com_type == 1){
+                if(flag == 1 && c == '/') {
+                    state = OUT;
+                    flag = 0;
+                }
+                else if(flag == 0 && c == '*')
+                    flag = 1;
+            }
+        }
+    }
+    printf("\nConverted:\n%s", output);
 }
