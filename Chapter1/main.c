@@ -118,6 +118,7 @@ void detab_local(int len) {
     printf("\n'%s'", line_n);
 }
 
+
 void exer1_22() {
     printf("Exercise 1.22...\n");
 
@@ -127,11 +128,10 @@ void exer1_22() {
     extern char line[MAXLINE];          /* input array */
 
     int c, i, ptr_i = -1, ptr_k = -1, k = 0, flag = -1;
-    int output_counter = 0, flag2 = -1;
+    int output_counter = 0, lim = -1;
 
     for(i = 0; i < input_len; ++i) {
         if(output_counter < MAXWIDTH) {
-            flag2 = 0;
             if(line[i] != '\t'){
                 if(line[i] == ' ') {
                     ptr_i = i;
@@ -145,28 +145,32 @@ void exer1_22() {
                 output[k++] = line[i];
                 ++output_counter;
             }
-            else if(line[i] == '\t') {
+            else {
                 ptr_k = k;
-                while(output_counter < MAXWIDTH && output_counter != TABSTOP) {
+                while(output_counter != TABSTOP) {
+                    if(output_counter >= MAXWIDTH) {
+                        lim = 1;
+                        break;
+                    }
+
                     output[k++] = ' ';
                     ++output_counter;
                 }
-
-                if(output_counter >= MAXWIDTH) {
-                    k = ++ptr_k;
-                    output_counter = 0;
-                    while(output_counter % TABSTOP != 0)
-                        output[k++] = ' ';
-                    output[k++] = '\n';
-                    ptr_k = k;
-                }
             }
         }
-        else {
+        if(output_counter >= MAXWIDTH || lim == 1){
             k = ++ptr_k;
             output_counter = 0;
+            i = (ptr_i != -1) ? ptr_i : i;
+            if(lim == 1) {
+                while(++output_counter < TABSTOP)
+                    output[k++] = ' ';
+                ptr_k = k;
+                lim = -1;
+                output_counter = 0;
+                ++i;
+            }
             output[k++] = '\n';
-            i = ptr_i;
             flag = -1;
         }
     }
