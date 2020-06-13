@@ -276,3 +276,9 @@ void exer1_24() {
            return false;
     return true;
 }
+int contain(char c, char arr[]) {
+    for(int i = 0; i < 5; ++i)
+        if(c == arr[i])
+            return i;
+    return -1;
+}
