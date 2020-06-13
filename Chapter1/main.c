@@ -238,7 +238,7 @@ void exer1_24() {
     // printf("%d %d %d %d %d %d", '(', '{', '[', '\'', '\"', '`');
     printf("Exercise 1.24...\n");
 
-    printf("Bug found: %d", bugcheck());
+    printf("\nBug found: %d", bugcheck());
 
 }
 int contain(char c, char arr[]) {
@@ -274,18 +274,18 @@ int bugcheck() {
     for(input_size = 0; (c = getchar()) != EOF; ++input_size) {
         if((index = contain(c, op_arr)) != -1)
             stack[ptr++] = index;
-        else if((index = contain(c, op_arr)) != -1) {
+        else if((index = contain(c, cl_arr)) != -1) {
             if(stack[ptr - 1] == index){
                 stack[ptr--] = -1;
                 stack[ptr] = -1;
             }
             else
-                return 0;
+                return 1;
         }
     }
 
     for(i = 0; i < input_size; ++i)
         if(stack[input_size] != -1)
-           return 0;
-    return 1;
+           return 1;
+    return 0;
 }
