@@ -264,20 +264,28 @@ int bugcheck() {
     cl_arr[0] = '\'';
     cl_arr[0] = '\"';
 
+    printf("%c", b);
+
     int stack[MAXLINE];
 
-    int ptr = 0, c, index, i, input_size;
+    int ptr = 0, c, index, i, input_size, state = -1;
+
+    // Out -1 -> close
+    // IN (*) -> open
 
     for(i = 0; i < MAXLINE; ++i)
         stack[i] = -1;
 
     for(input_size = 0; (c = getchar()) != EOF; ++input_size) {
-        if((index = contain(c, op_arr)) != -1)
+        if(state == -1 && (index = contain(c, op_arr)) != -1) {
             stack[ptr++] = index;
+            state = (index > 2) ? index : -1;
+        }
         else if((index = contain(c, cl_arr)) != -1) {
-            if(stack[ptr - 1] == index){
+            if(ptr != 0 && stack[ptr - 1] == index){
                 stack[ptr--] = -1;
                 stack[ptr] = -1;
+                state = (state == IN) ? OUT : IN;
             }
             else
                 return 1;
@@ -285,7 +293,8 @@ int bugcheck() {
     }
 
     for(i = 0; i < input_size; ++i)
-        if(stack[input_size] != -1)
+        if(stack[i] != -1)
            return 1;
     return 0;
+    printf("Hello");
 }
