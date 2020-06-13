@@ -228,6 +228,7 @@ void exer1_23() {
 }
 
 int contain(char c, char arr[]);
+int bugcheck();
 
 void exer1_24() {
     /*  Write a program to check a C program for rudimentary syntax errors like
@@ -237,19 +238,31 @@ void exer1_24() {
     // printf("%d %d %d %d %d %d", '(', '{', '[', '\'', '\"', '`');
     printf("Exercise 1.24...\n");
 
+    printf("Bug found: %d", bugcheck());
+
+}
+int contain(char c, char arr[]) {
+    for(int i = 0; i < 5; ++i)
+        if(c == arr[i])
+            return i;
+    return -1;
+}
+
+int bugcheck() {
+
     char op_arr[5];
     op_arr[0] = '[';
     op_arr[1] = '{';
     op_arr[2] = '(';
-    op_arr[3] = '/'';
-    op_arr[4] = '/"';
+    op_arr[3] = '\'';
+    op_arr[4] = '\"';
 
     char cl_arr[5];
     cl_arr[0] = ']';
     cl_arr[1] = '}';
     cl_arr[2] = ')';
-    cl_arr[0] = '/'';
-    cl_arr[0] = '/"';
+    cl_arr[0] = '\'';
+    cl_arr[0] = '\"';
 
     int stack[MAXLINE];
 
@@ -267,18 +280,12 @@ void exer1_24() {
                 stack[ptr] = -1;
             }
             else
-                return false;
+                return 0;
         }
     }
 
     for(i = 0; i < input_size; ++i)
         if(stack[input_size] != -1)
-           return false;
-    return true;
-}
-int contain(char c, char arr[]) {
-    for(int i = 0; i < 5; ++i)
-        if(c == arr[i])
-            return i;
-    return -1;
+           return 0;
+    return 1;
 }
