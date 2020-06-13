@@ -268,7 +268,7 @@ int bugcheck() {
 
     int stack[MAXLINE];
 
-    int ptr = 0, c, index, i, input_size, state = -1;
+    int ptr = 0, c, index, i, input_size, state = -1, esc_c = 0;
 
     // Out -1 -> close
     // IN (*) -> open
@@ -277,19 +277,27 @@ int bugcheck() {
         stack[i] = -1;
 
     for(input_size = 0; (c = getchar()) != EOF; ++input_size) {
-        if(state == -1 && (index = contain(c, op_arr)) != -1) {
-            stack[ptr++] = index;
-            state = (index > 2) ? index : -1;
-        }
-        else if((index = contain(c, cl_arr)) != -1) {
-            if(ptr != 0 && stack[ptr - 1] == index){
-                stack[ptr--] = -1;
-                stack[ptr] = -1;
-                state = (state == IN) ? OUT : IN;
+        if(esc_c == 0){
+            if(state == -1 && (index = contain(c, op_arr)) != -1) {
+                stack[ptr++] = index;
+                state = (index > 2) ? index : -1;
             }
-            else
-                return 1;
+            else if((index = contain(c, cl_arr)) != -1) {
+                if(state != -1 && state == index || state == -1) {
+                    if(ptr != 0 && stack[ptr - 1] == index){
+                        stack[ptr--] = -1;
+                        stack[ptr] = -1;
+                        state = (state == IN) ? OUT : IN;
+                    }
+                    else
+                        return 1;
+                }
+            }
+            else if(c == '\\')
+                esc_c = 1;
         }
+        else
+            esc_c = 0;
     }
 
     for(i = 0; i < input_size; ++i)
