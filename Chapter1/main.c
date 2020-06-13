@@ -296,5 +296,4 @@ int bugcheck() {
         if(stack[i] != -1)
            return 1;
     return 0;
-    printf("Hello");
 }
