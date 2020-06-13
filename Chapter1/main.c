@@ -10,7 +10,7 @@
 
 int main()
 {
-    exer1_23();
+    exer1_24();
     return 0;
 }
 
@@ -225,4 +225,54 @@ void exer1_23() {
     }
     output[k] = '\0';
     printf("\nConverted:\n%s", output);
+}
+
+int contain(char c, char arr[]);
+
+void exer1_24() {
+    /*  Write a program to check a C program for rudimentary syntax errors like
+        unmatched parentheses, brackets and braces. Don't forget about quotes, both single and
+        double, escape sequences, and comments. (This program is hard if you do it in full generality.)
+    */
+    // printf("%d %d %d %d %d %d", '(', '{', '[', '\'', '\"', '`');
+    printf("Exercise 1.24...\n");
+
+    char op_arr[5];
+    op_arr[0] = '[';
+    op_arr[1] = '{';
+    op_arr[2] = '(';
+    op_arr[3] = '/'';
+    op_arr[4] = '/"';
+
+    char cl_arr[5];
+    cl_arr[0] = ']';
+    cl_arr[1] = '}';
+    cl_arr[2] = ')';
+    cl_arr[0] = '/'';
+    cl_arr[0] = '/"';
+
+    int stack[MAXLINE];
+
+    int ptr = 0, c, index, i, input_size;
+
+    for(i = 0; i < MAXLINE; ++i)
+        stack[i] = -1;
+
+    for(input_size = 0; (c = getchar()) != EOF; ++input_size) {
+        if((index = contain(c, op_arr)) != -1)
+            stack[ptr++] = index;
+        else if((index = contain(c, op_arr)) != -1) {
+            if(stack[ptr - 1] == index){
+                stack[ptr--] = -1;
+                stack[ptr] = -1;
+            }
+            else
+                return false;
+        }
+    }
+
+    for(i = 0; i < input_size; ++i)
+        if(stack[input_size] != -1)
+           return false;
+    return true;
 }
