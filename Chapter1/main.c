@@ -264,8 +264,6 @@ int bugcheck() {
     cl_arr[0] = '\'';
     cl_arr[0] = '\"';
 
-    printf("%c", b);
-
     int stack[MAXLINE];
 
     int ptr = 0, c, index, i, input_size, state = -1, esc_c = 0;
