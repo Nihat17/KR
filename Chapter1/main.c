@@ -261,8 +261,8 @@ int bugcheck() {
     cl_arr[0] = ']';
     cl_arr[1] = '}';
     cl_arr[2] = ')';
-    cl_arr[0] = '\'';
-    cl_arr[0] = '\"';
+    cl_arr[3] = '\'';
+    cl_arr[4] = '\"';
 
     int stack[MAXLINE];
 
@@ -291,7 +291,7 @@ int bugcheck() {
                         return 1;
                 }
             }
-            else if(c == '\\')
+            else if(state != -1 && c == '\\')
                 esc_c = 1;
         }
         else
