@@ -237,12 +237,8 @@ void exer1_24() {
     */
     // printf("%d %d %d %d %d %d", '(', '{', '[', '\'', '\"', '`');
     printf("Exercise 1.24...\n");
-    int m = 0;
-    while(m == 0) {
-        printf("\nBug found: %d", bugcheck());
-        printf("\nGo on\n");
-    }
 
+    printf("\nBug found: %d", bugcheck());
 }
 int contain(char c, char arr[]) {
     for(int i = 0; i < 5; ++i)
@@ -270,9 +266,6 @@ int bugcheck() {
     int stack[MAXLINE];
 
     int ptr = 0, c, index, i, input_size, state = -1, esc_c = 0;
-
-    // Out -1 -> close
-    // IN (*) -> open
 
     for(i = 0; i < MAXLINE; ++i)
         stack[i] = -1;
