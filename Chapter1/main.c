@@ -237,8 +237,11 @@ void exer1_24() {
     */
     // printf("%d %d %d %d %d %d", '(', '{', '[', '\'', '\"', '`');
     printf("Exercise 1.24...\n");
-
-    printf("\nBug found: %d", bugcheck());
+    int m = 0;
+    while(m == 0) {
+        printf("\nBug found: %d", bugcheck());
+        printf("\nGo on\n");
+    }
 
 }
 int contain(char c, char arr[]) {
