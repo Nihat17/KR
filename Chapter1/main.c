@@ -288,7 +288,7 @@ int bugcheck() {
                     if(ptr != 0 && stack[ptr - 1] == index){
                         stack[ptr--] = -1;
                         stack[ptr] = -1;
-                        state = (state == IN) ? OUT : IN;
+                        state = (state != -1) ? -1 : state;
                     }
                     else
                         return 1;
