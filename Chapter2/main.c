@@ -26,3 +26,14 @@ void exer1_2() {
     printf("Range of double %e to %e\n", DBL_MIN, DBL_MAX);
     printf("Range of long double %e to %e\n", LDBL_MIN, LDBL_MAX);
 }
+
+int pow(int val, int powe);
+
+int compute_size(int n_bits) {
+    int result = 0, i;
+
+    for(i = 0; i < n_bits; ++i)
+        result += pow(2, i);
+
+    return result;
+}
