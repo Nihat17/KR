@@ -3,6 +3,9 @@
 #include <limits.h>
 #include <float.h>
 
+#define SIGNED      0
+#define UNSIGNED    1
+
 int main()
 {
     exer1_2();
@@ -25,21 +28,44 @@ void exer1_2() {
     printf("Range of float %e to %e\n", FLT_MIN, FLT_MAX);
     printf("Range of double %e to %e\n", DBL_MIN, DBL_MAX);
     printf("Range of long double %e to %e\n", LDBL_MIN, LDBL_MAX);
+
+
+    printf("\nSize range of char is ");
+    compute_size(sizeof(char), SIGNED);
+
+    printf("Size range of signed char is ");
+    compute_size(sizeof(char), SIGNED);
+
+    printf("Size range of unsigned char is ");
+    compute_size(sizeof(char), UNSIGNED);
+
+    printf("Size range of int is ");
+    compute_size(sizeof(int), SIGNED);
+
+    printf("Size range of signed int is ");
+    compute_size(sizeof(int), SIGNED);
+
+    printf("Size range of unsigned int is ");
+    compute_size(sizeof(int), UNSIGNED);
 }
 
-int pow(int val, int powe);
+long pow(int val, int power);
 
-int compute_size(int n_bits) {
-    int result = 0, i;
+void compute_size(int n_byte, int state) {
 
-    for(i = 0; i < n_bits; ++i)
-        result += pow(2, i);
+    int n_bits = n_byte * 8;
 
-    return result;
+    if(state == UNSIGNED) {
+        printf("0 to %d\n", pow(2 ,n_bits) - 1);
+    }
+    else{
+        unsigned long val = pow(2, n_bits);
+        printf("%ld to %lu\n", -val + val / 2, (val - val / 2) - 1);
+    }
 }
 
-int pow(int val, int power) {
+long pow(int val, int power) {
     if(power == 0)
         return 1;
-    return pow(val, pow - 1) * 2;
+    return pow(val, power - 1) * 2;
 }
