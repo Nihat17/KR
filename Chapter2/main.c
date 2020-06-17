@@ -55,6 +55,8 @@ void exer1_2() {
 
     printf("Size range of unsigned short is ");
     compute_size(sizeof(short), UNSIGNED);
+
+    printf("ASCII value of 1 = %d, ASCII value of 0 = %d, subtraction = %d ", '1', '0', '1' - '0');
 }
 
 long long pow(int val, int power);
@@ -76,4 +78,15 @@ long long pow(int val, int power) {
     if(power == 0)
         return 1;
     return pow(val, power - 1) * 2;
+}
+
+/* implementation of atoi function */
+
+int atoi2(char s[]) {
+    int i, n;
+
+    n = 0;
+    for(i = 0; s[i] >= '0' && s[i] <= '9'; ++i)
+        n = 10 * n + (s[i] - '0');
+    return n;
 }
