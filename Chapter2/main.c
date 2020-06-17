@@ -6,11 +6,22 @@
 #define SIGNED      0
 #define UNSIGNED    1
 
+void exer1_2();
+int atoi2(char[]);
+int lower2(char);
+
 int main()
 {
     exer1_2();
+
+    printf("\nConverted number: %d", atoi2("12345"));
+
+    printf("\nlower value of J is %c", lower2('J'));
+
     return 0;
 }
+
+void compute_size(int, int);
 
 void exer1_2() {
     printf("Range of signed char %d to %d\n", SCHAR_MIN, SCHAR_MAX);
@@ -28,9 +39,6 @@ void exer1_2() {
     printf("Range of float %e to %e\n", FLT_MIN, FLT_MAX);
     printf("Range of double %e to %e\n", DBL_MIN, DBL_MAX);
     printf("Range of long double %e to %e\n", LDBL_MIN, LDBL_MAX);
-
-    unsigned long k = 18446744073709551615;
-    printf("here its   %lu", k);
 
     printf("\nSize range of char is ");
     compute_size(sizeof(char), SIGNED);
@@ -55,8 +63,6 @@ void exer1_2() {
 
     printf("Size range of unsigned short is ");
     compute_size(sizeof(short), UNSIGNED);
-
-    printf("ASCII value of 1 = %d, ASCII value of 0 = %d, subtraction = %d ", '1', '0', '1' - '0');
 }
 
 long long pow(int val, int power);
@@ -89,4 +95,14 @@ int atoi2(char s[]) {
     for(i = 0; s[i] >= '0' && s[i] <= '9'; ++i)
         n = 10 * n + (s[i] - '0');
     return n;
+}
+
+/*
+    implementation of lower function
+    between each lower and corresponding capital letter difference is 32
+*/
+int lower2(char c) {
+    if(c >= 'A' && c <= 'Z')
+        return c + 'a' - 'A';
+    return c;
 }
