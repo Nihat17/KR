@@ -47,24 +47,36 @@ void exer1_2() {
 
     printf("Size range of unsigned int is ");
     compute_size(sizeof(int), UNSIGNED);
+
+    printf("Size range of signed short is ");
+    compute_size(sizeof(short), SIGNED);
+
+    printf("Size range of unsigned short is ");
+    compute_size(sizeof(short), UNSIGNED);
+
+    printf("Size range of signed long is ");
+    compute_size(sizeof(long), SIGNED);
+
+    printf("Size range of unsigned long is ");
+    compute_size(sizeof(long), UNSIGNED);
 }
 
-long pow(int val, int power);
+long long pow(int val, int power);
 
 void compute_size(int n_byte, int state) {
 
     int n_bits = n_byte * 8;
 
     if(state == UNSIGNED) {
-        printf("0 to %d\n", pow(2 ,n_bits) - 1);
+        printf("0 to %lu\n", pow(2 ,n_bits) - 1);
     }
     else{
-        unsigned long val = pow(2, n_bits);
-        printf("%ld to %lu\n", -val + val / 2, (val - val / 2) - 1);
+        long long val = pow(2, n_bits);
+        printf("%lld to %lld\n", -val + val / 2, (val - val / 2) - 1);
     }
 }
 
-long pow(int val, int power) {
+long long pow(int val, int power) {
     if(power == 0)
         return 1;
     return pow(val, power - 1) * 2;
