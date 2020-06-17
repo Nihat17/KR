@@ -37,3 +37,9 @@ int compute_size(int n_bits) {
 
     return result;
 }
+
+int pow(int val, int power) {
+    if(power == 0)
+        return 1;
+    return pow(val, pow - 1) * 2;
+}
