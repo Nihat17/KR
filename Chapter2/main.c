@@ -29,6 +29,8 @@ void exer1_2() {
     printf("Range of double %e to %e\n", DBL_MIN, DBL_MAX);
     printf("Range of long double %e to %e\n", LDBL_MIN, LDBL_MAX);
 
+    unsigned long k = 18446744073709551615;
+    printf("here its   %lu", k);
 
     printf("\nSize range of char is ");
     compute_size(sizeof(char), SIGNED);
@@ -53,12 +55,6 @@ void exer1_2() {
 
     printf("Size range of unsigned short is ");
     compute_size(sizeof(short), UNSIGNED);
-
-    printf("Size range of signed long is ");
-    compute_size(sizeof(long), SIGNED);
-
-    printf("Size range of unsigned long is ");
-    compute_size(sizeof(long), UNSIGNED);
 }
 
 long long pow(int val, int power);
@@ -68,7 +64,7 @@ void compute_size(int n_byte, int state) {
     int n_bits = n_byte * 8;
 
     if(state == UNSIGNED) {
-        printf("0 to %lu\n", pow(2 ,n_bits) - 1);
+        printf("0 to %lld\n", pow(2 ,n_bits) - 1);
     }
     else{
         long long val = pow(2, n_bits);
