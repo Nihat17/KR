@@ -124,6 +124,9 @@ int lower2(char c) {
 int getStrLen(char[]);
 
 int htoi(char s[]) {
+    if(s[0] != '0' && s[1] != 'x' || s[0] != '0' && s[1] != 'X')
+        return -1;
+
     char hex_vals[6];
     int i;
 
@@ -132,10 +135,10 @@ int htoi(char s[]) {
     for(i = 0; i < 6; ++i)
         hex_vals[i] = i + 10;
 
-    int len = getStrLen(s);
+    int power = getStrLen(s) - 2;
     int x = 0;
 
-    for(i = 0; s[i] != '\0'; ++i) {
+    for(i = 2; s[i] != '\0'; ++i) {
         if(s[i] >= 'A' && s[i] <= 'Z')
             x = hex_vals[s[i] - 65];
         else if(s[i] >= 'a' && s[i] <= 'z')
