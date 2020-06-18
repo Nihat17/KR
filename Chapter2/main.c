@@ -18,15 +18,7 @@ int main()
 {
     exer1_2();
 
-    printf("\nConverted number: %d", atoi2("12345"));
-
-    printf("\nlower value of J is %c\n", lower2('J'));
-
-    printf("A=%d, Z=%d\n", 'A', 'Z');
-    printf("a=%d, z=%d\n", 'a', 'z');
-    printf("%c", 75);
-
-    printf("\n0 = %d, 9=%d", '0', '9');
+    printf("\nhtoi = %d", htoi("0xee7A9"));
     return 0;
 }
 
@@ -92,7 +84,7 @@ void compute_size(int n_byte, int state) {
 long long pow(int val, int power) {
     if(power == 0)
         return 1;
-    return pow(val, power - 1) * 2;
+    return pow(val, power - 1) * val;
 }
 
 /* implementation of atoi function */
@@ -124,6 +116,7 @@ int lower2(char c) {
 int getStrLen(char[]);
 
 int htoi(char s[]) {
+
     if(s[0] != '0' && s[1] != 'x' || s[0] != '0' && s[1] != 'X')
         return -1;
 
@@ -135,7 +128,7 @@ int htoi(char s[]) {
     for(i = 0; i < 6; ++i)
         hex_vals[i] = i + 10;
 
-    int power = getStrLen(s) - 2;
+    int power = getStrLen(s) - 3;
     int x = 0;
 
     for(i = 2; s[i] != '\0'; ++i) {
@@ -148,7 +141,7 @@ int htoi(char s[]) {
         else
             return -1;
 
-        output += x * pow(16, len--);
+        output += x * pow(16, power--);
     }
 
     return output;
