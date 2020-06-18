@@ -7,8 +7,12 @@
 #define UNSIGNED    1
 
 void exer1_2();
+
 int atoi2(char[]);
+
 int lower2(char);
+
+int htoi(char[]);
 
 int main()
 {
@@ -16,8 +20,11 @@ int main()
 
     printf("\nConverted number: %d", atoi2("12345"));
 
-    printf("\nlower value of J is %c", lower2('J'));
+    printf("\nlower value of J is %c\n", lower2('J'));
 
+    printf("A=%d, Z=%d\n", 'A', 'Z');
+    printf("a=%d, z=%d\n", 'a', 'z');
+    printf("%c", 75);
     return 0;
 }
 
@@ -105,4 +112,36 @@ int lower2(char c) {
     if(c >= 'A' && c <= 'Z')
         return c + 'a' - 'A';
     return c;
+}
+
+/*
+    Write a function htoi(s) , which converts a string of hexadecimal digits
+    (including an optional 0x or 0X ) into its equivalent integer value. The allowable digits are 0
+    through 9 , a through f , and A through F .
+*/
+int getStrLen(char[]);
+
+int htoi(char s[]) {
+    char hex_vals[6];
+    int i;
+
+    int output = 0;
+
+    for(i = 0; i < 6; ++i)
+        hex_vals[i] = i + 10;
+
+    int len = getStrLen(s);
+
+    for(i = 0; s[i] != '\0'; ++i)
+        if(s[i] >= 'A' && s[i] <= 'Z')
+            output += hex_vals[s[i] - 65] * pow(16, len--);
+        else if(s[i] >= 'a' && s[i] <= 'z')
+    return 0;
+}
+
+int getStrLen(char s[]){
+    int i;
+    for(i = 0; s[i] != '\0'; ++i)
+        ;
+    return i;
 }
