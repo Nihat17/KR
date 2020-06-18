@@ -18,7 +18,7 @@ int main()
 {
     exer1_2();
 
-    printf("\nhtoi = %d", htoi("0xee7A9"));
+    printf("\nDecimal value of 0xFee7A9 = %d", htoi("0xFee7A9"));
     return 0;
 }
 
@@ -135,7 +135,7 @@ int htoi(char s[]) {
         if(s[i] >= 'A' && s[i] <= 'Z')
             x = hex_vals[s[i] - 65];
         else if(s[i] >= 'a' && s[i] <= 'z')
-            x = hex_vals[s[i] - 65];
+            x = hex_vals[s[i] - 97];
         else if(s[i] >= '0' && s[i] <= '9')
             x = s[i] - 48;
         else
