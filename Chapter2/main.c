@@ -25,6 +25,8 @@ int main()
     printf("A=%d, Z=%d\n", 'A', 'Z');
     printf("a=%d, z=%d\n", 'a', 'z');
     printf("%c", 75);
+
+    printf("\n0 = %d, 9=%d", '0', '9');
     return 0;
 }
 
@@ -131,12 +133,22 @@ int htoi(char s[]) {
         hex_vals[i] = i + 10;
 
     int len = getStrLen(s);
+    int x = 0;
 
-    for(i = 0; s[i] != '\0'; ++i)
+    for(i = 0; s[i] != '\0'; ++i) {
         if(s[i] >= 'A' && s[i] <= 'Z')
-            output += hex_vals[s[i] - 65] * pow(16, len--);
+            x = hex_vals[s[i] - 65];
         else if(s[i] >= 'a' && s[i] <= 'z')
-    return 0;
+            x = hex_vals[s[i] - 65];
+        else if(s[i] >= '0' && s[i] <= '9')
+            x = s[i] - 48;
+        else
+            return -1;
+
+        output += x * pow(16, len--);
+    }
+
+    return output;
 }
 
 int getStrLen(char s[]){
