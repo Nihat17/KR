@@ -16,6 +16,8 @@ int htoi(char[]);
 
 void exer2_3();
 
+void exer2_4();
+
 int main()
 {
     exer2_1();
@@ -74,6 +76,27 @@ void exer2_1() {
 void exer2_3() {
     printf("\nExercise 2.3...\n");
     printf("Decimal value of 0xFee7A9 = %d", htoi("0xFee7A9"));
+}
+
+void squeeze(char[], char[]);
+
+void exer2_4() {
+    printf("\nExercise 2.4...\n");
+
+    squeeze("hello", "hel");
+}
+
+void squeeze(char s1[], char s2[]) {
+    int s2_l;
+    while(s2[++s2_l] != '\0')
+        ;
+    int i, j;
+    for(int c = 0; s2[c] != '\0'; ++i) {
+        for(i = j = 0; s1[i] != '\0'; ++i)
+            if(s1[i] != s[c])
+                s1[j++] = s1[i];
+        s[j] = '\0';
+    }
 }
 
 long long pow(int val, int power);
