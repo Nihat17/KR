@@ -14,17 +14,22 @@ int lower2(char);
 
 int htoi(char[]);
 
+void exer2_3();
+
 int main()
 {
     exer2_1();
+    exer2_3();
 
-    printf("\nDecimal value of 0xFee7A9 = %d", htoi("0xFee7A9"));
     return 0;
 }
 
 void compute_size(int, int);
 
 void exer2_1() {
+
+    printf("Exercise 2.1...\n");
+
     printf("Range of signed char %d to %d\n", SCHAR_MIN, SCHAR_MAX);
     printf("Range of unsigned char 0 to %d\n\n", UCHAR_MAX);
 
@@ -64,6 +69,11 @@ void exer2_1() {
 
     printf("Size range of unsigned short is ");
     compute_size(sizeof(short), UNSIGNED);
+}
+
+void exer2_3() {
+    printf("\nExercise 2.3...\n");
+    printf("Decimal value of 0xFee7A9 = %d", htoi("0xFee7A9"));
 }
 
 long long pow(int val, int power);
