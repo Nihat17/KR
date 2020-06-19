@@ -22,13 +22,18 @@ int main()
 {
     exer2_1();
     exer2_3();
-
+    exer2_4();
     return 0;
 }
 
 void compute_size(int, int);
 
 void exer2_1() {
+    /*
+        Write a program to determine the ranges of char , short , int , and long
+        variables, both signed and unsigned , by printing appropriate values from standard headers
+        and by direct computation.
+    */
 
     printf("Exercise 2.1...\n");
 
@@ -74,6 +79,12 @@ void exer2_1() {
 }
 
 void exer2_3() {
+    /*
+        Write a function htoi(s) , which converts a string of hexadecimal digits
+        (including an optional 0x or 0X ) into its equivalent integer value. The allowable digits are 0
+        through 9 , a through f , and A through F .
+    */
+
     printf("\nExercise 2.3...\n");
     printf("Decimal value of 0xFee7A9 = %d", htoi("0xFee7A9"));
 }
@@ -81,21 +92,27 @@ void exer2_3() {
 void squeeze(char[], char[]);
 
 void exer2_4() {
+    /*
+        Write an alternative version of squeeze(s1,s2) that deletes each character in
+        s1 that matches any character in the string s2 .
+    */
+
     printf("\nExercise 2.4...\n");
 
-    squeeze("hello", "hel");
+    char s1[] = "hello there";
+    char s2[] = "e";
+
+    squeeze(s1, s2);
+    printf("Modified string %s\n", s1);
 }
 
 void squeeze(char s1[], char s2[]) {
-    int s2_l;
-    while(s2[++s2_l] != '\0')
-        ;
     int i, j;
-    for(int c = 0; s2[c] != '\0'; ++i) {
+    for(int c = 0; s2[c] != '\0'; ++c) {
         for(i = j = 0; s1[i] != '\0'; ++i)
-            if(s1[i] != s[c])
+            if(s1[i] != s2[c])
                 s1[j++] = s1[i];
-        s[j] = '\0';
+        s1[j] = '\0';
     }
 }
 
