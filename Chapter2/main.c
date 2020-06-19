@@ -18,6 +18,8 @@ void exer2_3();
 
 void exer2_4();
 
+void exer2_5();
+
 int main()
 {
     exer2_1();
@@ -104,6 +106,26 @@ void exer2_4() {
 
     squeeze(s1, s2);
     printf("Modified string %s\n", s1);
+}
+
+int any(char[], char[]);
+
+void exer2_5() {
+    /*
+        Write the function any(s1,s2) , which returns the first location in a string s1
+        where any character from the string s2 occurs, or -1 if s1 contains no characters from s2 .
+    */
+    printf("Exercise 2.5...\n");
+
+}
+
+int any(char s1[], char s2[]) {
+    int i, c;
+    for(c = 0; s2[c] != '\0'; ++c)
+        for(i = 0; s1[i] != '\0'; ++i)
+            if(s[i] == s[c])
+                return i;
+    return -1;
 }
 
 void squeeze(char s1[], char s2[]) {
