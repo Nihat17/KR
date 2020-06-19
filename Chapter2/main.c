@@ -16,7 +16,7 @@ int htoi(char[]);
 
 int main()
 {
-    exer1_2();
+    exer2_1();
 
     printf("\nDecimal value of 0xFee7A9 = %d", htoi("0xFee7A9"));
     return 0;
@@ -24,7 +24,7 @@ int main()
 
 void compute_size(int, int);
 
-void exer1_2() {
+void exer2_1() {
     printf("Range of signed char %d to %d\n", SCHAR_MIN, SCHAR_MAX);
     printf("Range of unsigned char 0 to %d\n\n", UCHAR_MAX);
 
